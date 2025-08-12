@@ -20,7 +20,8 @@ This project demonstrates a simple load balancing setup using Docker Compose wit
    git clone https://github.com/<your-username>/<repo-name>.git
    cd <repo-name>
 
-    Start the setup using Docker Compose:
+
+Start the setup using Docker Compose:
 
 docker-compose up --build
 
