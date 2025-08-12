@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  ubuntu-nginx-1:
+    image: ubuntu:latest
+    container_name: ubuntu-nginx-1
+    command: >
+      bash -c "
+        apt-get update &&
+        apt-get install -y nginx &&
+        cp /mnt/nginx.conf /etc/nginx/nginx.conf &&
+        cp /mnt/index1.html /var/www/html/index.html &&
+        nginx -g 'daemon off;'
+      "
+    volumes:
+      - ./nginx.conf:/mnt/nginx.conf:ro
+      - ./assets/index1.html:/mnt/index1.html:ro
+    networks:
+      - nginx-network
+
+  ubuntu-nginx-2:
+    image: ubuntu:latest
+    container_name: ubuntu-nginx-2
+    command: >
+      bash -c "
+        apt-get update &&
+        apt-get install -y nginx &&
+        cp /mnt/nginx.conf /etc/nginx/nginx.conf &&
+        cp /mnt/index2.html /var/www/html/index.html &&
+        nginx -g 'daemon off;'
+      "
+    volumes:
+      - ./nginx.conf:/mnt/nginx.conf:ro
+      - ./assets/index2.html:/mnt/index2.html:ro
+    networks:
+      - nginx-network
+
+  ubuntu-nginx-3:
+    image: ubuntu:latest
+    container_name: ubuntu-nginx-3
+    command: >
+      bash -c "
+        apt-get update &&
+        apt-get install -y nginx &&
+        cp /mnt/nginx.conf /etc/nginx/nginx.conf &&
+        cp /mnt/index3.html /var/www/html/index.html &&
+        nginx -g 'daemon off;'
+      "
+    volumes:
+      - ./nginx.conf:/mnt/nginx.conf:ro
+      - ./assets/index3.html:/mnt/index3.html:ro
+    networks:
+      - nginx-network
+
+  nginx-loadbalancer:
+    image: nginx:latest
+    container_name: nginx-loadbalancer
+    volumes:
+      - ./loadbalancer.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8002:80"
+    depends_on:
+      - ubuntu-nginx-1
+      - ubuntu-nginx-2
+      - ubuntu-nginx-3
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    driver: bridge
