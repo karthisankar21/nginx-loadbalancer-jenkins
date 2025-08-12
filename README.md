@@ -21,19 +21,28 @@ This project demonstrates a simple load balancing setup using Docker Compose wit
    cd <repo-name>
 
 
-Start the setup using Docker Compose:
+2. Start the setup using Docker Compose:
 
-docker-compose up --build
+   ```bash
+   ./start.sh
 
-Open your browser and navigate to:
+   it run this command in background
+   docker-compose up --build
 
+4. Open your browser and navigate to:
+
+   ```bash
     http://localhost:8002
 
     Refresh the page multiple times to see the load balancer cycling through backend containers serving different static pages.
 
-Stop the containers
+6. Stop the containers
 
-docker-compose down
+   ```bash
+   ./stop.sh
+
+   it run this command in background
+   docker-compose down
 
 Notes
 
