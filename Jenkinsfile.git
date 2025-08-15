@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'SCRIPT_TO_RUN',
+            choices: ['start.sh', 'test.sh', 'stop.sh'],
+            description: 'Select the script to run'
+        )
+    }
+
+    stages {
+        stage('Run Selected Script') {
+            steps {
+                script {
+                    runScript(params.SCRIPT_TO_RUN)
+                }
+            }
+        }
+    }
+}
+
+def runScript(scriptName) {
+    if (isUnix()) {
+        // Linux/Mac agents
+        sh "bash \"${env.WORKSPACE}/sh/${scriptName}\""
+    } else {
+        // Windows agents → convert to WSL path
+        def wslPath = env.WORKSPACE
+            .replace('\\', '/')    // Convert backslashes to forward slashes
+            .replaceAll('^([A-Za-z]):', '/mnt/$1') // Convert drive letter to /mnt/c format
+            .toLowerCase()
+        bat "wsl bash \"${wslPath}/sh/${scriptName}\""
+    }
+}
