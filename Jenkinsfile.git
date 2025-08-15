@@ -4,7 +4,7 @@ pipeline {
     parameters {
         choice(
             name: 'SCRIPT_TO_RUN',
-            choices: ['start.sh', 'test.sh', 'stop.sh'],
+            choices: ['start.sh', 'test.sh', 'clean.sh'],
             description: 'Select the script to run'
         )
     }
