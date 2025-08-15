@@ -17,8 +17,8 @@ This project demonstrates a simple load balancing setup using Docker Compose wit
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/<your-username>/<repo-name>.git
-   cd <repo-name>
+   git clone https://github.com/karthisankar21/nginx-loadbalancer-jenkins.git
+   cd nginx-loadbalancer-jenkins
 
 
 2. Start the setup using Docker Compose:

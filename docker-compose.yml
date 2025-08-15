@@ -13,7 +13,7 @@ services:
         nginx -g 'daemon off;'
       "
     volumes:
-      - ./nginx.conf:/mnt/nginx.conf:ro
+      - ./assets/nginx.conf:/mnt/nginx.conf:ro
       - ./assets/index1.html:/mnt/index1.html:ro
     networks:
       - nginx-network
@@ -30,7 +30,7 @@ services:
         nginx -g 'daemon off;'
       "
     volumes:
-      - ./nginx.conf:/mnt/nginx.conf:ro
+      - ./assets/nginx.conf:/mnt/nginx.conf:ro
       - ./assets/index2.html:/mnt/index2.html:ro
     networks:
       - nginx-network
@@ -47,7 +47,7 @@ services:
         nginx -g 'daemon off;'
       "
     volumes:
-      - ./nginx.conf:/mnt/nginx.conf:ro
+      - ./assets/nginx.conf:/mnt/nginx.conf:ro
       - ./assets/index3.html:/mnt/index3.html:ro
     networks:
       - nginx-network
@@ -56,7 +56,7 @@ services:
     image: nginx:latest
     container_name: nginx-loadbalancer
     volumes:
-      - ./loadbalancer.conf:/etc/nginx/nginx.conf:ro
+      - ./assets/loadbalancer.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "8002:80"
     depends_on:
