@@ -23,6 +23,7 @@ pipeline {
             cleanWs()   // Jenkins Workspace Cleanup Plugin required
         }
     }
+}
 
 def runScript(commandName) {
     if (isUnix()) {
