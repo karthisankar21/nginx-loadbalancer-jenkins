@@ -104,17 +104,17 @@ nginx-loadbalancer-jenkins/
 
 2. Create a new Pipeline Job in Jenkins.
 
-  - In Pipeline script from SCM, select:
+   - In Pipeline script from SCM, select:
 
-        SCM: Git
+         SCM: Git
 
-        Repository URL: https://github.com/karthisankar21/nginx-loadbalancer-jenkins.git
+         Repository URL: https://github.com/karthisankar21/nginx-loadbalancer-jenkins.git
 
-  - Script Path: Jenkinsfile.git
+   - Script Path: Jenkinsfile.git
 
-  - Save and Build.
+   - Save and Build.
 
-4. Build the pipeline → You will be prompted to select a script to run:
+3. Build the pipeline → You will be prompted to select a script to run:
 
    - start.sh → Start Nginx and backend containers
 
@@ -122,6 +122,7 @@ nginx-loadbalancer-jenkins/
 
    - clean.sh → Stop and clean up containers
    
+---
 
 ✅ Usage
 
@@ -131,6 +132,7 @@ nginx-loadbalancer-jenkins/
 
  - To clean up containers: choose clean.sh.
 
+---
 
 📌 Notes
 
@@ -139,12 +141,5 @@ nginx-loadbalancer-jenkins/
  - On Linux, scripts run natively with bash.
  
  - Ensure Docker is running before executing the pipeline.
-
-
----
-
-👉 This README explains the project clearly, gives **installation steps** for Windows + Linux, and shows **how to run your Jenkins pipeline**.  
-
-Do you want me to also include **example Dockerfiles + Nginx config** in the README so users can see how load balancing is set up, or just keep it Jenkins-focused?
 
 ---
