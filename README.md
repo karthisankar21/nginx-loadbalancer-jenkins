@@ -1,55 +1,82 @@
-# Nginx Load Balancer with Multiple Ubuntu Nginx Containers using Docker Compose
+# Nginx Load Balancer with Jenkins Automation
 
-This project demonstrates a simple load balancing setup using Docker Compose with Nginx:
+This project demonstrates a simple **Nginx load balancer setup using Docker**, fully automated with a **Jenkins pipeline**.  
+The pipeline works on **both Linux and Windows** environments (with WSL support on Windows).
 
-- Three Ubuntu containers each running Nginx, serving different static `index.html` pages.
-- One Nginx container acting as a load balancer proxying requests to the backend containers.
+---
 
-## Project Structure
+## 🚀 Project Overview
 
-- `docker-compose.yml`: Defines all services and the user-defined network.
-- `nginx.conf`: Nginx configuration for backend containers.
-- `loadbalancer.conf`: Nginx configuration for the load balancer with upstream backend servers.
-- `assets/index1.html`, `index2.html`, `index3.html`: Static HTML files served by backend containers.
+- Nginx acts as a **reverse proxy and load balancer** for multiple backend containers.  
+- The Jenkins pipeline automates starting, testing, and cleaning up the Docker environment.  
+- Compatible with:
+  - **Linux agents** (Docker + Jenkins installed natively).
+  - **Windows agents** (Docker Desktop + Jenkins + WSL installed).
 
-## How to Use
+---
 
-1. Clone the repository:
+## 📂 Repository Structure
 
-   ```bash
+nginx-loadbalancer-jenkins/
+├── Jenkinsfile # Jenkins pipeline definition
+├── sh/
+│ ├── start.sh # Start Nginx + backend containers
+│ ├── test.sh # Test the load balancer setup
+│ └── clean.sh # Stop and clean up containers
+└── README.md # Project documentation
+
+
+---
+
+## ⚙️ Prerequisites
+
+### For **Linux**
+1. Install **Docker Engine**  
+   👉 [Install Docker on Linux](https://docs.docker.com/engine/install/)
+   
+3. Install **Jenkins**  
+   👉 [Install Jenkins on Linux](https://www.jenkins.io/doc/book/installing/)  
+
+---
+
+### For **Windows**
+1. Install **Docker Desktop**  
+   👉 [Download Docker Desktop](https://www.docker.com/products/docker-desktop/)  
+   - Enable **WSL 2 backend** during setup.
+  
+2. Install **WSL (Windows Subsystem for Linux)**  
+   Open **PowerShell as Administrator** and run:  
+   ```powershell
+   wsl --install
+
+Restart your system after installation.
+
+3. Install Jenkins for Windows
+👉 Jenkins Windows Installer
+
+⚠️ Ensure Jenkins has access to Docker CLI and WSL.
+
+🛠 Jenkins Pipeline Setup
+
+1. Clone this repository in Jenkins workspace:
+   ```
    git clone https://github.com/karthisankar21/nginx-loadbalancer-jenkins.git
-   cd nginx-loadbalancer-jenkins
 
+2. Create a new Pipeline Job in Jenkins.
 
-2. Start the setup using Docker Compose:
+    In Pipeline script from SCM, select:
 
-   ```bash
-   ./start.sh
+        SCM: Git
 
-   it run this command in background
-   docker-compose up --build
+        Repository URL: https://github.com/karthisankar21/nginx-loadbalancer-jenkins.git
 
-4. Open your browser and navigate to:
+    Script Path: Jenkinsfile.git
 
-   ```bash
-    http://localhost:8002
+3. Build the pipeline → You will be prompted to select a script to run:
 
-    Refresh the page multiple times to see the load balancer cycling through backend containers serving different static pages.
+    start.sh → Start Nginx and backend containers
 
-6. Stop the containers
+    test.sh → Verify load balancing setup
 
-   ```bash
-   ./stop.sh
-
-   it run this command in background
-   docker-compose down
-
-Notes
-
-    Backend containers install Nginx at runtime on top of the Ubuntu base image. For faster startup, consider building a custom Docker image with Nginx pre-installed.
-
-    The load balancer uses the official nginx:latest image.
-
-    All containers communicate over a custom Docker bridge network named nginx-network.
-
-Feel free to open issues or contribute via pull requests!
+    clean.sh → Stop and clean up containers
+   
