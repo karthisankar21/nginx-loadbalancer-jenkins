@@ -16,7 +16,7 @@ The pipeline works on **both Linux and Windows** environments (with WSL support 
 ---
 
 ## 📂 Repository Structure
-
+```
 nginx-loadbalancer-jenkins/
 ├── Jenkinsfile # Jenkins pipeline definition
 ├── sh/
