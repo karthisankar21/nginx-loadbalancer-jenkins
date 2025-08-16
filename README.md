@@ -18,13 +18,20 @@ The pipeline works on **both Linux and Windows** environments (with WSL support 
 ## 📂 Repository Structure
 ```
 nginx-loadbalancer-jenkins/
-├── Jenkinsfile # Jenkins pipeline definition
+├── Jenkinsfile.git # Jenkins pipeline definition
+├── docker-compose.yml
+├── assests
+| ├── index1.html
+| ├── index2.html
+| ├── index3.html
+| ├── nginx.conf
+| ├── loadbalancer.conf
 ├── sh/
 │ ├── start.sh # Start Nginx + backend containers
 │ ├── test.sh # Test the load balancer setup
 │ └── clean.sh # Stop and clean up containers
 └── README.md # Project documentation
-
+```
 
 ---
 
@@ -72,7 +79,9 @@ Restart your system after installation.
 
     Script Path: Jenkinsfile.git
 
-3. Build the pipeline → You will be prompted to select a script to run:
+    Save and Build.
+
+4. Build the pipeline → You will be prompted to select a script to run:
 
     start.sh → Start Nginx and backend containers
 
