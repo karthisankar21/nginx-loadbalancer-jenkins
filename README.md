@@ -108,8 +108,18 @@ nginx-loadbalancer-jenkins/
      docker --version
      wsl --list --verbose
      ```
-   
-⚠️ Ensure Jenkins has access to Docker CLI and WSL.
+   ⚠️ Ensure Jenkins has access to Docker CLI and WSL.
+
+6. **Alternative for WSL (No WSL Required):**
+
+   If you don’t want to use WSL, this project also supports a **Windows-native pipeline**.  
+   - A new pipeline file is provided: **Jenkins.local**  
+   - Instead of running `.sh` scripts in WSL, it executes **.bat scripts** from the `bat/` folder.  
+   - Example:
+     - `bat/run.bat` → Starts Nginx + backend containers  
+     - `bat/wait.bat` → Waits for container setup  
+   - Configure Jenkins to use **Jenkins.local** as the pipeline script if you prefer this approach
+
 
 ---
 
@@ -142,11 +152,7 @@ nginx-loadbalancer-jenkins/
 4. Verify in Browser
    Visit http in your browser.
    ```
-<<<<<<< HEAD
    http://localhost:8002/ 
-=======
-   http://localhost:8002/
->>>>>>> f0c738a05fa58c72206f1e2a00ce496bc3ebfb20
    ```
    To see the updated index.html each time, perform a hard refresh:
 
