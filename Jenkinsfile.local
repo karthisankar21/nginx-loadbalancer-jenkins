@@ -18,7 +18,11 @@ pipeline {
             }
         }
     }
-}
+    stage('Clean Workspace') {
+        always {
+            cleanWs()   // Jenkins Workspace Cleanup Plugin required
+        }
+    }
 
 def runScript(commandName) {
     if (isUnix()) {
