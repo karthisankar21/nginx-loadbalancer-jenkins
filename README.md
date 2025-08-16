@@ -38,30 +38,57 @@ nginx-loadbalancer-jenkins/
 ## ⚙️ Prerequisites
 
 ### For **Linux**
-1. Install **Docker Engine**  
-   👉 [Install Docker on Linux](https://docs.docker.com/engine/install/)
-   
-3. Install **Jenkins**  
-   👉 [Install Jenkins on Linux](https://www.jenkins.io/doc/book/installing/)  
+1. **Install Docker Engine**
+   ```bash
+   sudo apt-get update
+   sudo apt-get install docker.io -y
+   ```
 
+2. **Install Jenkins**
+   ```bash
+   sudo apt-get install openjdk-11-jdk -y
+   curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
+    /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+    echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+   sudo apt-get update
+   sudo apt-get install jenkins -y
+   ```
+   
+3. **Verify installation**
+  ```bash
+  docker --version
+  java --version
 ---
 
 ### For **Windows**
-1. Install **Docker Desktop**  
-   👉 [Download Docker Desktop](https://www.docker.com/products/docker-desktop/)  
-   - Enable **WSL 2 backend** during setup.
-  
-2. Install **WSL (Windows Subsystem for Linux)**  
-   Open **PowerShell as Administrator** and run:  
-   ```powershell
-   wsl --install
 
-Restart your system after installation.
+1. **Install Docker Desktop for Windows**
+   - Download from [Docker Desktop](https://www.docker.com/products/docker-desktop)
+   - Ensure **WSL 2 backend** is enabled during installation
 
-3. Install Jenkins for Windows
-👉 Jenkins Windows Installer
+2. **Install Jenkins on Windows**
+   - Download from [Jenkins](https://www.jenkins.io/download/)
+   - Run Jenkins as a Windows service
 
+3. **Install WSL (Windows Subsystem for Linux)**
+   - Open **PowerShell as Administrator** and run:
+     ```powershell
+     wsl --install
+     ```
+   - Restart your system if required
+   - By default, Ubuntu will be installed.
+
+4. **Verify Docker and WSL integration**
+   - From PowerShell:
+     ```powershell
+     docker --version
+     wsl --list --verbose
+     ```
+   
 ⚠️ Ensure Jenkins has access to Docker CLI and WSL.
+
 
 🛠 Jenkins Pipeline Setup
 
@@ -89,3 +116,28 @@ Restart your system after installation.
 
     clean.sh → Stop and clean up containers
    
+
+✅ Usage
+
+To start the load balancer: choose start.sh in Jenkins.
+
+To test the setup: choose test.sh.
+
+To clean up containers: choose clean.sh.
+
+📌 Notes
+
+On Windows, Jenkins uses WSL to execute shell scripts.
+
+On Linux, scripts run natively with bash.
+
+Ensure Docker is running before executing the pipeline.
+
+
+---
+
+👉 This README explains the project clearly, gives **installation steps** for Windows + Linux, and shows **how to run your Jenkins pipeline**.  
+
+Do you want me to also include **example Dockerfiles + Nginx config** in the README so users can see how load balancing is set up, or just keep it Jenkins-focused?
+
+---
