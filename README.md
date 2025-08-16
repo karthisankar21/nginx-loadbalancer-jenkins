@@ -142,3 +142,8 @@ nginx-loadbalancer-jenkins/
  - Ensure Docker is running before executing the pipeline.
 
 ---
+
+⚡ Important:
+
+ - Do not run test immediately after start, as the Docker container may take some time to build. Wait until the containers are ready.
+---
