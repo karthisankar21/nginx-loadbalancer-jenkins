@@ -23,13 +23,13 @@ pipeline {
 def runScript(commandName) {
     if (isUnix()) {
         // Linux/Mac agents
-        sh "bash \"${env.WORKSPACE}/sh/run.sh\ ${commandName}\""
+        sh "bash \"${env.WORKSPACE}/sh/run.sh\" ${commandName}"
     } else {
         // Windows agents → convert to WSL path
         def wslPath = env.WORKSPACE
             .replace('\\', '/')    // Convert backslashes to forward slashes
             .replaceAll('^([A-Za-z]):', '/mnt/$1') // Convert drive letter to /mnt/c format
             .toLowerCase()
-        bat "wsl bash \"${wslPath}/sh/run.sh\ ${commandName}\""
+        bat "wsl bash \"${wslPath}/sh/run.sh\" ${commandName}"
     }
 }
