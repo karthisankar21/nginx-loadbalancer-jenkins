@@ -113,16 +113,16 @@ nginx-loadbalancer-jenkins/
 6. **Alternative for WSL (No WSL Required):**
 
    If you don’t want to use WSL, this project also supports a **Windows-native pipeline**.  
-   - A new pipeline file is provided: **Jenkins.local**  
+   - A new pipeline file is provided: **Jenkinsfile.local**  
    - Instead of running `.sh` scripts in WSL, it executes **.bat scripts** from the `bat/` folder.  
    - Example:
      - `bat/run.bat` → Starts Nginx + backend containers  
-   - Configure Jenkins to use **Jenkins.local** as the pipeline script if you prefer this approach
+   - Configure Jenkins to use **Jenkinsfile.local** as the pipeline script if you prefer this approach
 
 
 ---
 
-🛠 Jenkins Pipeline Setup
+## 🛠 Jenkins Pipeline Setup for WSL
 
 1. Clone this repository in Jenkins workspace:
    ```
@@ -158,6 +158,50 @@ nginx-loadbalancer-jenkins/
     - Windows/Linux: Ctrl + F5 or Ctrl + Shift + R
 
     - Mac: Cmd + Shift + R
+---
+
+## ⚙️ Alternative for WSL Installation- Jenkins Pipeline Setup
+
+If you don't want to use WSL, you can set up Jenkins with this method instead.
+
+1. Open **Jenkins Dashboard** → Create a **New Pipeline Job**  
+2. In **Pipeline configuration** → Choose:  
+   - **Pipeline script from SCM**  
+   - **SCM:** `Git`  
+   - **Repository URL:**  
+     ```
+     https://github.com/karthisankar21/nginx-loadbalancer-jenkins.git
+     ```
+3. Under **Script Path**, choose one of the following:  
+
+   - **For Windows Native environments** → use:
+     ```
+     Jenkinsfile.local
+     ```
+
+   - Save and Build.
+
+3. Build the pipeline → You will be prompted to select a command to run:
+
+   - start → Start Nginx and backend containers
+
+   - test → Verify load balancing setup
+
+   - clean → Stop and clean up containers
+
+4. Verify in Browser
+   Visit http in your browser.
+   ```
+   http://localhost:8002/ 
+   ```
+   To see the updated index.html each time, perform a hard refresh:
+
+    - Windows/Linux: Ctrl + F5 or Ctrl + Shift + R
+
+    - Mac: Cmd + Shift + R
+
+👉 This `Jenkinsfile.local` works on both Windows and Linux.
+
 ---
 
 ✅ Usage
