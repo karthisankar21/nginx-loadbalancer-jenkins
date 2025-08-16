@@ -140,8 +140,13 @@ nginx-loadbalancer-jenkins/
    - clean → Stop and clean up containers
 
 4. Verify in Browser
+   Visit http in your browser.
    ```
+<<<<<<< HEAD
    http://localhost:8002/ 
+=======
+   http://localhost:8002/
+>>>>>>> f0c738a05fa58c72206f1e2a00ce496bc3ebfb20
    ```
    To see the updated index.html each time, perform a hard refresh:
 
