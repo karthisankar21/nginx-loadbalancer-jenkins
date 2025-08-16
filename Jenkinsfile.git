@@ -3,33 +3,33 @@ pipeline {
 
     parameters {
         choice(
-            name: 'SCRIPT_TO_RUN',
-            choices: ['start.sh', 'test.sh', 'clean.sh'],
+            name: 'COMMAND_TO_RUN',
+            choices: ['start', 'test', 'clean'],
             description: 'Select the script to run'
         )
     }
 
     stages {
-        stage('Run Selected Script') {
+        stage('Run Selected Command') {
             steps {
                 script {
-                    runScript(params.SCRIPT_TO_RUN)
+                    runScript(params.COMMAND_TO_RUN)
                 }
             }
         }
     }
 }
 
-def runScript(scriptName) {
+def runScript(commandName) {
     if (isUnix()) {
         // Linux/Mac agents
-        sh "bash \"${env.WORKSPACE}/sh/${scriptName}\""
+        sh "bash \"${env.WORKSPACE}/sh/run.sh ${commandName}\""
     } else {
         // Windows agents → convert to WSL path
         def wslPath = env.WORKSPACE
             .replace('\\', '/')    // Convert backslashes to forward slashes
             .replaceAll('^([A-Za-z]):', '/mnt/$1') // Convert drive letter to /mnt/c format
             .toLowerCase()
-        bat "wsl bash \"${wslPath}/sh/${scriptName}\""
+        bat "wsl bash \"${wslPath}/sh/run.sh ${commandName}\""
     }
 }
