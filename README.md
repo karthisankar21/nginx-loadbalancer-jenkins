@@ -141,7 +141,7 @@ nginx-loadbalancer-jenkins/
 
 4. Verify in Browser
    ```
-   Visit http://localhost:8002/ in your browser.
+   http://localhost:8002/ 
    ```
    To see the updated index.html each time, perform a hard refresh:
 
