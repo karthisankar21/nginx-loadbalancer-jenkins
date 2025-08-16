@@ -15,11 +15,6 @@ pipeline {
                 script {
                     runScript(params.COMMAND_TO_RUN)
                 }
-            }
-        }
-
-        stage('Clean Workspace') {
-            steps {
                 always {
                     cleanWs()   // Jenkins Workspace Cleanup Plugin required
                 }
