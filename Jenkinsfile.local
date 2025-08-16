@@ -19,8 +19,10 @@ pipeline {
         }
 
         stage('Clean Workspace') {
-            always {
-                cleanWs()   // Jenkins Workspace Cleanup Plugin required
+            steps {
+                always {
+                    cleanWs()   // Jenkins Workspace Cleanup Plugin required
+                }
             }
         }
     }
