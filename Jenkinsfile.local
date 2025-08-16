@@ -16,7 +16,7 @@ pipeline {
                     runScript(params.COMMAND_TO_RUN)
                 }
                 always {
-                    cleanWs()   // Jenkins Workspace Cleanup Plugin required
+                    deleteDir()   // Jenkins Workspace Cleanup Plugin required
                 }
             }
         }
