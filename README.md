@@ -117,7 +117,6 @@ nginx-loadbalancer-jenkins/
    - Instead of running `.sh` scripts in WSL, it executes **.bat scripts** from the `bat/` folder.  
    - Example:
      - `bat/run.bat` → Starts Nginx + backend containers  
-     - `bat/wait.bat` → Waits for container setup  
    - Configure Jenkins to use **Jenkins.local** as the pipeline script if you prefer this approach
 
 
