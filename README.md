@@ -32,7 +32,6 @@ nginx-loadbalancer-jenkins/
 │ └── clean.sh # Stop and clean up containers
 └── README.md # Project documentation
 ```
-
 ---
 
 ## ⚙️ Prerequisites
@@ -47,20 +46,26 @@ nginx-loadbalancer-jenkins/
 2. **Install Jenkins**
    ```bash
    sudo apt-get install openjdk-11-jdk -y
+   
    curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
     /usr/share/keyrings/jenkins-keyring.asc > /dev/null
     echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
     https://pkg.jenkins.io/debian binary/ | sudo tee \
     /etc/apt/sources.list.d/jenkins.list > /dev/null
+   
    sudo apt-get update
+   
    sudo apt-get install jenkins -y
+   
    ```
    
 3. **Verify installation**
-  ```bash
-  docker --version
-  java --version
----
+   ```bash
+    docker --version
+    java --version
+   ```
+   
+ ---
 
 ### For **Windows**
 
@@ -89,6 +94,7 @@ nginx-loadbalancer-jenkins/
    
 ⚠️ Ensure Jenkins has access to Docker CLI and WSL.
 
+---
 
 🛠 Jenkins Pipeline Setup
 
@@ -98,40 +104,41 @@ nginx-loadbalancer-jenkins/
 
 2. Create a new Pipeline Job in Jenkins.
 
-    In Pipeline script from SCM, select:
+  - In Pipeline script from SCM, select:
 
         SCM: Git
 
         Repository URL: https://github.com/karthisankar21/nginx-loadbalancer-jenkins.git
 
-    Script Path: Jenkinsfile.git
+  - Script Path: Jenkinsfile.git
 
-    Save and Build.
+  - Save and Build.
 
 4. Build the pipeline → You will be prompted to select a script to run:
 
-    start.sh → Start Nginx and backend containers
+   - start.sh → Start Nginx and backend containers
 
-    test.sh → Verify load balancing setup
+   - test.sh → Verify load balancing setup
 
-    clean.sh → Stop and clean up containers
+   - clean.sh → Stop and clean up containers
    
 
 ✅ Usage
 
-To start the load balancer: choose start.sh in Jenkins.
+ - To start the load balancer: choose start.sh in Jenkins.
 
-To test the setup: choose test.sh.
+ - To test the setup: choose test.sh.
 
-To clean up containers: choose clean.sh.
+ - To clean up containers: choose clean.sh.
+
 
 📌 Notes
 
-On Windows, Jenkins uses WSL to execute shell scripts.
+ - On Windows, Jenkins uses WSL to execute shell scripts.
 
-On Linux, scripts run natively with bash.
-
-Ensure Docker is running before executing the pipeline.
+ - On Linux, scripts run natively with bash.
+ 
+ - Ensure Docker is running before executing the pipeline.
 
 
 ---
