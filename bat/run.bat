@@ -27,7 +27,7 @@ IF /I "%arg%"=="test" (
     FOR /L %%i IN (1,1,5) DO (
         echo Request: %%i
         curl -s http://localhost:8002
-        timeout /t 1 >nul
+        timeout /t 1
     )
     echo Test complete!
     SHIFT
