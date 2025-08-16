@@ -27,9 +27,8 @@ nginx-loadbalancer-jenkins/
 | ├── nginx.conf
 | ├── loadbalancer.conf
 ├── sh/
-│ ├── start.sh # Start Nginx + backend containers
-│ ├── test.sh # Test the load balancer setup
-│ └── clean.sh # Stop and clean up containers
+│ ├── run.sh  # Start Nginx + backend containers
+│ └── wait.sh # Wait for containers setup time
 └── README.md # Project documentation
 ```
 ---
@@ -114,23 +113,23 @@ nginx-loadbalancer-jenkins/
 
    - Save and Build.
 
-3. Build the pipeline → You will be prompted to select a script to run:
+3. Build the pipeline → You will be prompted to select a command to run:
 
-   - start.sh → Start Nginx and backend containers
+   - start → Start Nginx and backend containers
 
-   - test.sh → Verify load balancing setup
+   - test → Verify load balancing setup
 
-   - clean.sh → Stop and clean up containers
+   - clean → Stop and clean up containers
    
 ---
 
 ✅ Usage
 
- - To start the load balancer: choose start.sh in Jenkins.
+ - To start the load balancer: choose start cmd in Jenkins.
 
- - To test the setup: choose test.sh.
+ - To test the setup: choose test cmd.
 
- - To clean up containers: choose clean.sh.
+ - To clean up containers: choose clean cmd.
 
 ---
 
