@@ -84,7 +84,25 @@ nginx-loadbalancer-jenkins/
    - Restart your system if required
    - By default, Ubuntu will be installed.
 
-4. **Verify Docker and WSL integration**
+4. **Configure Jenkins Service**
+
+   - Press Win + R, type **services.msc**.
+
+   - Find **Jenkins** in the list.
+
+   - Right-click → Properties → Log On tab.
+
+   - Change from Local System Account → This account.
+
+   - Enter your Windows username (type whoami in CMD if unsure).
+
+   - Enter your Windows account password.
+
+      ⚠️ Make sure your account has a password. WSL won’t work if the password is missing.
+
+   - Click Apply → OK, then restart Jenkins.
+
+5. **Verify Docker and WSL integration**
    - From PowerShell:
      ```powershell
      docker --version
@@ -120,7 +138,16 @@ nginx-loadbalancer-jenkins/
    - test → Verify load balancing setup
 
    - clean → Stop and clean up containers
-   
+
+4. Verify in Browser
+   ```
+   Visit http://localhost:8002/ in your browser.
+   ```
+   To see the updated index.html each time, perform a hard refresh:
+
+    - Windows/Linux: Ctrl + F5 or Ctrl + Shift + R
+
+    - Mac: Cmd + Shift + R
 ---
 
 ✅ Usage
